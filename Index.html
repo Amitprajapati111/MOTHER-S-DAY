@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mother's Day Special</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffefef 0%, #fff8f8 100%);
+            color: #333;
+            line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50 L60 40 L50 30 L40 40 Z' fill='%23ffcad4' fill-opacity='0.2'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "❤️";
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            top: -20px;
+            right: -20px;
+            transform: rotate(15deg);
+        }
+        
+        header::after {
+            content: "🌸";
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            bottom: -20px;
+            left: -10px;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            color: #fff;
+            font-size: 1.3rem;
+        }
+        
+        .card-creator {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            border: 2px dashed #ffcad4;
+        }
+        
+        .card-creator::before {
+            content: "✨";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+        }
+        
+        h2 {
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff9a9e, transparent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ffe0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff9f9;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #ff9a9e;
+            box-shadow: 0 0 0 3px rgba(255, 154, 158, 0.2);
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 82, 82, 0.4);
+        }
+        
+        .preview-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-card::before {
+            content: "💝";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+        }
+        
+        .card-content {
+            padding: 30px;
+            border: 3px solid #ffcad4;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #fff9f9 0%, #fff 100%);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .card-content::before {
+            content: "❤️";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+        }
+        
+        .card-content::after {
+            content: "🌷";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 20px;
+        }
+        
+        .mom-photo {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: block;
+            border: 5px solid #ffcad4;
+            box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+            object-fit: cover;
+        }
+        
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #444;
+            padding: 0 15px;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .message-text::before {
+            content: '"';
+            font-size: 50px;
+            color: #ffcad4;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.5;
+        }
+        
+        .message-text::after {
+            content: '"';
+            font-size: 50px;
+            color: #ffcad4;
+            position: absolute;
+            bottom: -40px;
+            right: -10px;
+            opacity: 0.5;
+        }
+        
+        .mom-name {
+            font-size: 2.2rem;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 12px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .share-btn img {
+            width: 24px;
+            margin-right: 10px;
+        }
+        
+        .affiliate-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            border-top: 5px solid #ff9a9e;
+        }
+        
+        .affiliate-section::before {
+            content: "🎁";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+        }
+        
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .gift-item {
+            text-align: center;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .gift-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: #ffcad4;
+        }
+        
+        .gift-item img {
+            max-width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gift-item h3 {
+            color: #ff6b6b;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .gift-item p {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .gift-item a {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .gift-item a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "💕";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            opacity: 0.3;
+        }
+        
+        footer::after {
+            content: "💐";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            opacity: 0.3;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+            animation: float-up 10s linear infinite;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .emoji-title {
+            display: inline-block;
+            margin: 0 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gift-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gift-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floating-hearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>माँ का दिन विशेष <span class="emoji-title">💖</span></h1>
+            <p class="subtitle">✨ अपनी माँ के लिए एक प्यारा सा संदेश बनाएँ और शेयर करें ✨</p>
+        </header>
+        
+        <section class="card-creator">
+            <h2>🌹 अपना खास संदेश बनाएँ 🌹</h2>
+            <div class="form-group">
+                <label for="mom-name">👩 माँ का नाम</label>
+                <input type="text" id="mom-name" placeholder="यहाँ माँ का नाम लिखें">
+            </div>
+            
+            <div class="form-group">
+                <label for="photo-upload">📸 माँ की तस्वीर (वैकल्पिक)</label>
+                <input type="file" id="photo-upload" accept="image/*">
+            </div>
+            
+            <div class="form-group">
+                <label for="message-template">💌 संदेश चुनें</label>
+                <select id="message-template">
+                    <option value="template1">आप मेरी दुनिया हैं, माँ। मदर्स डे की हार्दिक शुभकामनाएँ! ❤️</option>
+                    <option value="template2">आपकी ममता की छाँव में जीवन कितना सुंदर है, माँ। मदर्स डे की बधाई! 🌸</option>
+                    <option value="template3">मेरी हर कामयाबी के पीछे आपका आशीर्वाद है, माँ। आपको मदर्स डे की ढेर सारी शुभकामनाएँ! ✨</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="custom-message">✏️ अपना निजी संदेश (वैकल्पिक)</label>
+                <textarea id="custom-message" placeholder="यहाँ अपना खास संदेश लिखें..."></textarea>
+            </div>
+            
+            <button id="generate-btn">✨ संदेश बनाएँ ✨</button>
+        </section>
+        
+        <section class="preview-card" id="preview-section">
+            <h2>💝 आपका खास संदेश 💝</h2>
+            <div class="card-content">
+                <img id="preview-photo" class="mom-photo" src="https://via.placeholder.com/200" alt="Mom's Photo">
+                <h3 class="mom-name" id="preview-name">प्यारी माँ</h3>
+                <p class="message-text" id="preview-message">आप मेरी दुनिया हैं, माँ। मदर्स डे की हार्दिक शुभकामनाएँ! ❤️</p>
+            </div>
+            
+            <button class="share-btn" id="whatsapp-share">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp">
+                WhatsApp पर शेयर करें 📱
+            </button>
+        </section>
+        
+        <section class="affiliate-section">
+            <h2>🎁 माँ के लिए खास उपहार 🎁</h2>
+            <p>मदर्स डे पर अपनी माँ को दें ये प्यारे तोहफे:</p>
+            
+            <div class="gift-grid">
+                <div class="gift-item">
+                    <img src="1st.jpg" alt="Gift Item">
+                    <h3>फ्लावर बुके 💐</h3>
+                    <p>₹199 से शुरू</p>
+                    <a href="https://amzn.to/3F3UTMS" target="_blank">अभी खरीदें 🛒</a>
+                </div>
+                
+                <div class="gift-item">
+                    <img src="2nd.jpg" alt="Gift Item">
+                    <h3>चॉकलेट बॉक्स 🍫</h3>
+                    <p>₹290 से शुरू</p>
+                    <a href="https://amzn.to/4iWOzEE" target="_blank">अभी खरीदें 🛒</a>
+                </div>
+                
+                <div class="gift-item">
+                    <img src="3rd.webp" alt="Gift Item">
+                    <h3>स्पेशल माँ मग ☕</h3>
+                    <p>₹239 से शुरू</p>
+                    <a href="https://amzn.to/3YDs6oZ" target="_blank">अभी खरीदें 🛒</a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>❤️ 2023 मदर्स डे स्पेशल। सभी अधिकार सुरक्षित। ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Check for shared content in URL parameters
+        function checkForSharedContent() {
+            const name = getUrlParameter('name');
+            const msg = getUrlParameter('msg');
+            const photo = getUrlParameter('photo');
+            
+            if (name || msg) {
+                // We have a shared card, display it immediately
+                if (name) {
+                    document.getElementById('preview-name').textContent = name;
+                }
+                
+                if (msg) {
+                    document.getElementById('preview-message').textContent = msg;
+                }
+                
+                if (photo && photo !== 'undefined' && photo !== '') {
+                    try {
+                        // Check if the photo is a valid data URL
+                        if (photo.startsWith('data:image')) {
+                            document.getElementById('preview-photo').src = photo;
+                        } else {
+                            // If it's not a valid data URL, use a default image
+                            document.getElementById('preview-photo').src = "https://via.placeholder.com/200";
+                        }
+                    } catch (e) {
+                        console.error("Error setting photo:", e);
+                        document.getElementById('preview-photo').src = "https://via.placeholder.com/200";
+                    }
+                }
+                
+                // Show the preview section
+                document.getElementById('preview-section').style.display = 'block';
+                
+                // Scroll to the preview section
+                setTimeout(() => {
+                    document.getElementById('preview-section').scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }
+        }
+        
+        // Create floating hearts background
+        const heartsContainer = document.getElementById('floating-hearts');
+        const heartEmojis = ['❤️', '💕', '💖', '💗', '💓', '💝', '🌸', '🌷'];
+        
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 10 + 's';
+            heart.style.animationDuration = 10 + Math.random() * 20 + 's';
+            heartsContainer.appendChild(heart);
+        }
+        
+        // DOM Elements
+        const generateBtn = document.getElementById('generate-btn');
+        const previewSection = document.getElementById('preview-section');
+        const previewName = document.getElementById('preview-name');
+        const previewMessage = document.getElementById('preview-message');
+        const previewPhoto = document.getElementById('preview-photo');
+        const whatsappShareBtn = document.getElementById('whatsapp-share');
+        const photoUpload = document.getElementById('photo-upload');
+        
+        // Photo upload preview
+        photoUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewPhoto.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Generate message
+        generateBtn.addEventListener('click', function() {
+            const momName = document.getElementById('mom-name').value || 'प्यारी माँ';
+            const messageTemplate = document.getElementById('message-template').value;
+            const customMessage = document.getElementById('custom-message').value;
+            
+            // Set name in preview
+            previewName.textContent = momName;
+            
+            // Set message in preview
+            if (customMessage.trim() !== '') {
+                previewMessage.textContent = customMessage;
+            } else {
+                // Get selected template text
+                const templateElement = document.getElementById('message-template');
+                const selectedOption = templateElement.options[templateElement.selectedIndex];
+                previewMessage.textContent = selectedOption.text;
+            }
+            
+            // Show preview section with animation
+            previewSection.style.display = 'block';
+            
+            // Scroll to preview section
+            previewSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Add celebration effect
+            addCelebration();
+        });
+        
+        // Add celebration effect
+        function addCelebration() {
+            const emojis = ['🎉', '✨', '💖', '🌸', '💝'];
+            const container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.pointerEvents = 'none';
+            container.style.zIndex = '9999';
+            
+            for (let i = 0; i < 30; i++) {
+                const emoji = document.createElement('div');
+                emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.position = 'absolute';
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = '0';
+                emoji.style.fontSize = Math.random() * 20 + 15 + 'px';
+                emoji.style.opacity = '0';
+                emoji.style.animation = `celebrate ${2 + Math.random()}s ease-out forwards`;
+                container.appendChild(emoji);
+            }
+            
+            document.body.appendChild(container);
+            
+            setTimeout(() => {
+                document.body.removeChild(container);
+            }, 3000);
+            
+            // Add celebration keyframes if not already added
+            if (!document.getElementById('celebration-keyframes')) {
+                const style = document.createElement('style');
+                style.id = 'celebration-keyframes';
+                style.innerHTML = `
+                    @keyframes celebrate {
+                        0% { transform: translateY(-20px); opacity: 0; }
+                        50% { opacity: 1; }
+                        100% { transform: translateY(100vh); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // WhatsApp sharing functionality
+        whatsappShareBtn.addEventListener('click', function() {
+            const momName = previewName.textContent;
+            const message = previewMessage.textContent;
+            
+            // Get photo data if available
+            let photoData = '';
+            if (previewPhoto.src && !previewPhoto.src.includes('placeholder')) {
+                photoData = encodeURIComponent(previewPhoto.src);
+            }
+            
+            // Create URL with parameters
+            const shareUrl = `${window.location.origin}${window.location.pathname}?name=${encodeURIComponent(momName)}&msg=${encodeURIComponent(message)}&photo=${photoData}`;
+            
+            // Create share text
+            const shareText = `*${momName}*\n\n${message}\n\n❤️ मदर्स डे स्पेशल पर बनाया गया संदेश। अपनी माँ के लिए भी देखें: ${shareUrl}`;
+            
+            // Create WhatsApp share URL
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            
+            // Open WhatsApp share
+            window.open(whatsappUrl, '_blank');
+        });
+        
+        // Load shared content when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkForSharedContent();
+        });
+    </script>
+</body>
+</html>
